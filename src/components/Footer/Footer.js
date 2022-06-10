@@ -1,41 +1,36 @@
 import React from "react";
 import { Box, Grid, Link, makeStyles, Typography } from "@mui/material";
-
+import "../../style.css";
 const Footer = () => {
   return (
     <div>
-      <Box
-        mt={2}
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src="https://www.natours.dev/img/logo-green.png"
-          height={36}
-          alt="logo-available"
-        />
-        <Grid>
-          <Link href="#" underline="none">
-            About Us
-          </Link>
-          <Link href="#" underline="none">
-            Download App
-          </Link>
-          <Link href="#" underline="none">
-            Become a Guide
-          </Link>
-          <Link href="#" underline="none">
-            Carriers
-          </Link>
-          <Link href="#" underline="none">
-            Contact Us
-          </Link>
-          <Typography> Created By Ashutosh Maurya</Typography>
-        </Grid>
-      </Box>
+      {/*footer*/}
+      <footer className="footer">
+        <div className="footer__logo">
+          {" "}
+          <img
+            src="https://www.natours.dev/img/logo-green.png"
+            alt="Natours Logo"
+          />
+        </div>
+        <ul className="footer__nav">
+          <li>
+            <a href="#">About us</a>
+          </li>
+          <li>
+            <a href="#">Download apps </a>
+          </li>
+          <li>
+            <a href="#">Become guide</a>
+          </li>
+          <li>
+            <a href="#">Carrier</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </footer>
     </div>
   );
 };

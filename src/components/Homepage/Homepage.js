@@ -1,147 +1,91 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAllTours } from "../../actions/userActions";
+import "../../style.css";
 
 const Homepage = () => {
+  const [tours, setTours] = useState([]);
+
+  const _getallTours = async () => {
+    const tour = await getAllTours();
+    let data = tour.data.doc;
+    setTours(data);
+  };
+
+  useEffect(() => {
+    _getallTours();
+  }, []);
+  console.log(tours);
+
   return (
-    <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <Card sx={{ maxWidth: 345, marginBottom: 12 }}>
-            <CardMedia
-              component="img"
-              image="https://natours-dev-jorge.herokuapp.com/img/tours/tour-1-cover.jpg"
-              height="254"
-              alt="tour-img"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                EASY 5-DAY TOUR
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Breathtaking hike through the Canadian Banff National Park
-              </Typography>
-              <Grid container className="card-data">
-                <Grid item xs={6}>
-                  Simla
-                </Grid>
-                <Grid item xs={6}>
-                  26 June
-                </Grid>
-                <Grid item xs={6}>
-                  3 stops
-                </Grid>
-                <Grid item xs={6}>
-                  20 people
-                </Grid>
-              </Grid>
-              <Grid container sx={{ justifyContent: "space-between" }}>
-                <Grid item>
-                  <Typography>233 per person</Typography>
-                  <Typography>5 rating(9)</Typography>
-                </Grid>
-                <Grid item>
-                  <Link underline="none" to="/tourDetails">
-                    Details
-                  </Link>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card sx={{ maxWidth: 345, marginBottom: 12 }}>
-            <CardMedia
-              component="img"
-              image="https://natours-dev-jorge.herokuapp.com/img/tours/tour-1-cover.jpg"
-              height="254"
-              alt="tour-img"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                EASY 5-DAY TOUR
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Breathtaking hike through the Canadian Banff National Park
-              </Typography>
-              <Grid container className="card-data">
-                <Grid item xs={6}>
-                  Simla
-                </Grid>
-                <Grid item xs={6}>
-                  26 June
-                </Grid>
-                <Grid item xs={6}>
-                  3 stops
-                </Grid>
-                <Grid item xs={6}>
-                  20 people
-                </Grid>
-              </Grid>
-              <Grid container sx={{ justifyContent: "space-between" }}>
-                <Grid item>
-                  <Typography>233 per person</Typography>
-                  <Typography>5 rating(9)</Typography>
-                </Grid>
-                <Grid item>
-                  <Button>Details</Button>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={4}>
-          <Card sx={{ maxWidth: 345, marginBottom: 12 }}>
-            <CardMedia
-              component="img"
-              image="https://natours-dev-jorge.herokuapp.com/img/tours/tour-1-cover.jpg"
-              height="254"
-              alt="tour-img"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                EASY 5-DAY TOUR
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Breathtaking hike through the Canadian Banff National Park
-              </Typography>
-              <Grid container className="card-data">
-                <Grid item xs={6}>
-                  Simla
-                </Grid>
-                <Grid item xs={6}>
-                  26 June
-                </Grid>
-                <Grid item xs={6}>
-                  3 stops
-                </Grid>
-                <Grid item xs={6}>
-                  20 people
-                </Grid>
-              </Grid>
-              <Grid container sx={{ justifyContent: "space-between" }}>
-                <Grid item>
-                  <Typography>233 per person</Typography>
-                  <Typography>5 rating(9)</Typography>
-                </Grid>
-                <Grid item>
-                  <Button>Details</Button>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Container>
+    <div className="main">
+      <div className="card-container">
+        {tours.map((item) => (
+          <div className="card">
+            <div className="card__header">
+              <div className="card__picture">
+                <div className="card__picture-overlay">&nbsp;</div>
+                <img
+                  className="card__picture-img"
+                  src={item.imageCover}
+                  alt="Tour 1"
+                />
+              </div>
+              <h3 className="heading-tertirary">
+                <span>{item.name}</span>
+              </h3>
+            </div>
+            <div className="card__details">
+              <h4 className="card__sub-heading">
+                {item.difficulty} {item.duration}-day tour
+              </h4>
+              <p className="card__text">{item.summary}</p>
+              <div className="card__data">
+                <svg className="card__icon">
+                  <use xlinkHref="img/icons.svg#icon-map-pin" />
+                </svg>
+                <span>{item.startLocation.description}</span>
+              </div>
+              <div className="card__data">
+                <svg className="card__icon">
+                  <use xlinkHref="img/icons.svg#icon-calendar" />
+                </svg>
+                <span>{item.startDates[0]}</span>
+              </div>
+              <div className="card__data">
+                <svg className="card__icon">
+                  <use xlinkHref="img/icons.svg#icon-flag" />
+                </svg>
+                <span>{item.locations.length} stops</span>
+              </div>
+              <div className="card__data">
+                <svg className="card__icon">
+                  <use xlinkHref="img/icons.svg#icon-user" />
+                </svg>
+                <span>{item.maxGroupSize} people</span>
+              </div>
+            </div>
+            <div className="card__footer">
+              <p>
+                <span className="card__footer-value">Rs.{item.price}</span>
+                <span className="card__footer-text">per person</span>
+              </p>
+              <p className="card__ratings">
+                <span className="card__footer-value">
+                  {item.ratingsAverage}
+                </span>
+                <span className="card__footer-text">
+                  rating ({item.ratingsQuantity})
+                </span>
+              </p>
+              <a className="btn btn--green btn--small" href="#">
+                Details
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

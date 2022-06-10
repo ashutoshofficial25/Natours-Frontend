@@ -1,35 +1,63 @@
 import { Box, Button, Container, Grid, Input, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./header.css";
+
+import "../../style.css";
+
+let token = localStorage.getItem("token");
+console.log(token);
+
+const displayLogin = () => {
+  if (token) {
+    return (
+      <nav className="nav nav--user">
+        <a href="#" className="nav__el">
+          Logout
+        </a>
+        <a href="#" className="nav__el">
+          <img src="" alt="User photo" className="nav__user-img" />
+          <span>Jonas</span>
+        </a>
+      </nav>
+    );
+  } else
+    return (
+      <nav className="nav nav--user">
+        <button class="nav__el">Log in</button>
+        <button class="nav__el nav__el--cta">Sign up</button>
+      </nav>
+    );
+};
+
 const Header = () => {
   return (
     <Container>
-      <Grid
-        className="nav-grid"
-        p={2}
-        container
-        sx={{ alignItems: "center", marginBottom: 12 }}
-        style={{ backgroundColor: "#424242" }}
-      >
-        <Grid item xs={4} className="grid-item">
-          <Button>All Tours</Button>
-          <Input type="search" />
-        </Grid>
-        <Grid item xs={4} className="grid-item">
-          <img
-            className="Logo"
-            src="https://www.natours.dev/img/logo-white.png"
-            height={36}
-          />
-        </Grid>
-        <Grid item xs={4} className="grid-item">
-          <Link underline="none" to="/login">
-            Log-in
+      <header className="header">
+        <nav className="nav nav--tours">
+          <Link to="/" className="nav__el">
+            All tours
           </Link>
-          <Link to="/signup">Sign-Up</Link>
-        </Grid>
-      </Grid>
+          <form className="nav__search">
+            <button className="nav__search-btn">
+              <svg>
+                <use xlinkHref="img/icons.svg#icon-search" />
+              </svg>
+            </button>
+            <input
+              type="text"
+              placeholder="Search tours"
+              className="nav__search-input"
+            />
+          </form>
+        </nav>
+        <div className="header__logo">
+          <img
+            src="https://www.natours.dev/img/logo-green.png"
+            alt="Natours logo"
+          />
+        </div>
+        {displayLogin()}
+      </header>
     </Container>
   );
 };
