@@ -11,6 +11,17 @@ export function login(email, password) {
     });
 }
 
+export function logout(email, password) {
+  const request = Axios.post(`users/logout`);
+  return request
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
 export const getAllTours = () => {
   const request = Axios.get(`tours`);
   return request

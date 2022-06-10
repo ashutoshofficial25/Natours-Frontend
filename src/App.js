@@ -7,6 +7,7 @@ import Homepage from "./components/Homepage/Homepage";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Tour from "./components/Tour/Tour";
+import UserPrfile from "./components/UserProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/tourDetails" element={<Tour />} />
+          <Route path="/me" element={<UserPrfile />} />
         </Routes>
         <Footer />
       </BrowserRouter>
