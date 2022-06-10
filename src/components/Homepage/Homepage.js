@@ -78,9 +78,9 @@ const Homepage = () => {
                   rating ({item.ratingsQuantity})
                 </span>
               </p>
-              <a className="btn btn--green btn--small" href="#">
+              <Link className="btn btn--green btn--small" to="/tourDetails">
                 Details
-              </a>
+              </Link>
             </div>
           </div>
         ))}

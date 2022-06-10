@@ -27,8 +27,12 @@ const displayLogin = () => {
           Logout
         </button>
         <Link to="/me" className="nav__el">
-          <img src="" alt="User photo" className="nav__user-img" />
-          <span>Jonas</span>
+          <img
+            src="https://avatars.githubusercontent.com/u/91019894?v=4"
+            alt="User photo"
+            className="nav__user-img"
+          />
+          <span>Ashu</span>
         </Link>
       </nav>
     );
@@ -38,7 +42,9 @@ const displayLogin = () => {
         <Link to="/login" class="nav__el">
           Log in
         </Link>
-        <button class="nav__el nav__el--cta">Sign up</button>
+        <Link to="/signup" class="nav__el nav__el--cta">
+          Sign up
+        </Link>
       </nav>
     );
 };

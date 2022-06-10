@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Tour from "./components/Tour/Tour";
 import UserPrfile from "./components/UserProfile";
+import Error from "./error";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/tourDetails" element={<Tour />} />
           <Route path="/me" element={<UserPrfile />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
         <Footer />
       </BrowserRouter>

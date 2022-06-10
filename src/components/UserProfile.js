@@ -90,7 +90,7 @@ const UserPrfile = () => {
                   className="form__input"
                   id="name"
                   type="text"
-                  defaultValue="Jonas Schmedtmann"
+                  defaultValue="Ashutosh Maurya"
                   required="required"
                 />
               </div>
@@ -102,7 +102,7 @@ const UserPrfile = () => {
                   className="form__input"
                   id="email"
                   type="email"
-                  defaultValue="admin@natours.io"
+                  defaultValue="ashu@gmail.com"
                   required="required"
                 />
               </div>
