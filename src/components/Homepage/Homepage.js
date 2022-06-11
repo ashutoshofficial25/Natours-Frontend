@@ -20,8 +20,8 @@ const Homepage = () => {
   return (
     <div className="main">
       <div className="card-container">
-        {tours.map((item) => (
-          <div className="card">
+        {tours.map((item, index) => (
+          <div className="card" key={index}>
             <div className="card__header">
               <div className="card__picture">
                 <div className="card__picture-overlay">&nbsp;</div>

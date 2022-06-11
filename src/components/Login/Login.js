@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
-import React from "react";
+import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
 import "../../style.css";
@@ -19,12 +19,14 @@ const loginForm = {
 };
 
 const Login = () => {
+  const [user, setUser] = useState();
   const navigate = useNavigate();
   const LoginSubmit = async (values) => {
     console.log(values.email, values.password);
+
     const data = await login(values.email, values.password);
     if (data) {
-      localStorage.setItem("token", data.token);
+      // localStorage.setItem("token", data.token);
       console.log(data);
       navigate("/");
     } else {
