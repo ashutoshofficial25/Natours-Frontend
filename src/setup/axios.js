@@ -7,6 +7,7 @@ const instance = Axios.create({
 });
 
 instance.defaults.headers.post["Content-Type"] = "application/json";
+//instance.defaults.withCredentials = true;
 
 // Also add/ configure interceptors && all the other cool stuff
 export default instance;

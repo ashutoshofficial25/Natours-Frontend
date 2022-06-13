@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllTours } from "../../actions/userActions";
+import { getAllTours, getTour } from "../../actions/userActions";
 import "../../style.css";
 
 const Homepage = () => {
@@ -78,7 +78,12 @@ const Homepage = () => {
                   rating ({item.ratingsQuantity})
                 </span>
               </p>
-              <Link className="btn btn--green btn--small" to="/tourDetails">
+              <Link
+                //onClick={() => handleTourClick(item._id)}
+                className="btn btn--green btn--small"
+                to="/tourDetails"
+                state={item._id}
+              >
                 Details
               </Link>
             </div>

@@ -17,7 +17,14 @@ export function signup(name, email, password, passwordConfirm) {
 }
 
 export function login(email, password) {
-  const request = Axios.post(`users/login`, { email, password });
+  const request = Axios.post(
+    `users/login`,
+    {
+      email,
+      password,
+    }
+    // { withCredentials: true }
+  );
   return request
     .then((result) => {
       return result.data;
@@ -40,6 +47,17 @@ export function logout() {
 
 export const getAllTours = () => {
   const request = Axios.get(`tours`);
+  return request
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export const getTour = (id) => {
+  const request = Axios.get(`tours/${id}`);
   return request
     .then((result) => {
       return result.data;

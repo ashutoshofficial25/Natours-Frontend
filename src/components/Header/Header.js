@@ -1,55 +1,56 @@
 import { Box, Button, Container, Grid, Input, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import "../../style.css";
-
-let token = localStorage.getItem("token");
-console.log(token);
-
-const _logout = () => {
-  const navigate = useNavigate();
-  console.log("btn clicked");
-  logout().then((data) => {
-    if (data.status == "success") {
-      console.log(data);
-      navigate("/");
-    }
-  });
-};
-
-const displayLogin = () => {
-  if (token) {
-    return (
-      <nav className="nav nav--user">
-        <button onClick={() => _logout()} className="nav__el">
-          Logout
-        </button>
-        <Link to="/me" className="nav__el">
-          <img
-            src="https://avatars.githubusercontent.com/u/91019894?v=4"
-            alt="User photo"
-            className="nav__user-img"
-          />
-          <span>Ashu</span>
-        </Link>
-      </nav>
-    );
-  } else
-    return (
-      <nav className="nav nav--user">
-        <Link to="/login" class="nav__el">
-          Log in
-        </Link>
-        <Link to="/signup" class="nav__el nav__el--cta">
-          Sign up
-        </Link>
-      </nav>
-    );
-};
+import { UserContext } from "../../contexts/userContext";
 
 const Header = () => {
+  const { loggedIn, setLoggedin } = useContext(UserContext);
+
+  const _logout = () => {
+    const navigate = useNavigate();
+    console.log("btn clicked");
+    logout().then((data) => {
+      if (data.status == "success") {
+        setLoggedin(false);
+        console.log(data);
+        navigate("/");
+      }
+    });
+  };
+
+  const displayLogin = () => {
+    if (loggedIn) {
+      return (
+        <nav className="nav nav--user">
+          <button onClick={() => _logout()} className="nav__el">
+            Logout
+          </button>
+          <Link to="/me" className="nav__el">
+            <img
+              src="https://avatars.githubusercontent.com/u/91019894?v=4"
+              alt="User photo"
+              className="nav__user-img"
+            />
+            <span>Ashu</span>
+          </Link>
+        </nav>
+      );
+    } else
+      return (
+        <nav className="nav nav--user">
+          <Link to="/login" className="nav__el">
+            Log in
+          </Link>
+          <Link to="/signup" className="nav__el nav__el--cta">
+            Sign up
+          </Link>
+        </nav>
+      );
+  };
+
   return (
     <Container>
       <header className="header">

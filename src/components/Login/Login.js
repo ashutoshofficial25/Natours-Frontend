@@ -1,32 +1,28 @@
 import { Container } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
+import { UserContext } from "../../contexts/userContext";
 import "../../style.css";
 
-// const _login = (email, password) => {
-//   login(email, password).then((data) => {
-//     if (data) {
-//       console.log(data);
-//     }
-//   });
-// };
-const loginForm = {
-  email: "",
-  password: "",
-};
-
 const Login = () => {
-  const [user, setUser] = useState();
+  const loginForm = {
+    email: "",
+    password: "",
+  };
+
+  const { setLoggedin, setCurrentUser } = useContext(UserContext);
+
   const navigate = useNavigate();
   const LoginSubmit = async (values) => {
     console.log(values.email, values.password);
 
     const data = await login(values.email, values.password);
     if (data) {
-      // localStorage.setItem("token", data.token);
+      //setCurrentUser(data);
+      setLoggedin(true);
       console.log(data);
       navigate("/");
     } else {

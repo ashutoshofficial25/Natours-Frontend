@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-export const UserContext = createContext();
+export const UserContext = createContext(true);
 
 export const UserProvider = (props) => {
   const getUser = () => {};
@@ -8,14 +8,14 @@ export const UserProvider = (props) => {
   const getCurrnetUser = () => {};
 
   const [currentUser, setCurrentUser] = useState(getUser());
-  const [loggenIn, setLoggedIn] = useState(getCurrnetUser());
+  const [loggedIn, setLoggedIn] = useState(getCurrnetUser());
 
   return (
     <UserContext.Provider
       value={{
         currentUser,
         setCurrentUser,
-        loggenIn,
+        loggedIn,
         setLoggedIn,
       }}
     >
