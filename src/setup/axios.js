@@ -3,7 +3,7 @@ import Axios from "axios";
 // Next we make an 'instance' of it
 const instance = Axios.create({
   // .. where we make our configurations
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "https://natours-api-v1.herokuapp.com/api/v1",
 });
 
 // Where you would set stuff like your 'Authorization' header, etc ...
