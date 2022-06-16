@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import { useSnackbar } from "notistack";
 import React, { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { login } from "../../actions/userActions";
 import { UserContext } from "../../contexts/userContext";
 import "../../style.css";
@@ -22,17 +23,26 @@ const Login = () => {
     console.log(values.email, values.password);
 
     const data = await login(values.email, values.password);
-    if (data) {
-      setCurrentUser(data);
-      navigate("/");
-      setLoggedin(true);
+    console.log("log", data.status);
+    if (data.status === "success") {
       localStorage.setItem("jwt", data.token);
-      // enqueueSnackbar("Login Success", {
-      //   variant: "success",
-      //   autoHideDuration: 3000,
-      // });
-      console.log(data);
-    } else {
+      Swal.fire({
+        icon: "success",
+        title: data.status,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setCurrentUser(data);
+      //setLoggedin(true);
+      navigate("/");
+      console.log("log", data.status);
+    } else if (data.error) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid email or password",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.log("error");
     }
   };

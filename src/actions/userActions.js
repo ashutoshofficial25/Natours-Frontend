@@ -30,7 +30,7 @@ export function login(email, password) {
       return result.data;
     })
     .catch((error) => {
-      return error;
+      throw error;
     });
 }
 
