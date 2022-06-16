@@ -3,12 +3,26 @@ import React, { createContext, useState } from "react";
 export const UserContext = createContext(true);
 
 export const UserProvider = (props) => {
-  const getUser = () => {};
+  const getUser = () => {
+    let user = localStorage.getItem("user");
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
-  const getCurrnetUser = () => {};
+  const getCurrnetUser = () => {
+    let user = localStorage.getItem("jwt");
+    if (user) {
+      return user;
+    } else {
+      return false;
+    }
+  };
 
-  const [currentUser, setCurrentUser] = useState(getUser());
-  const [loggedIn, setLoggedIn] = useState(getCurrnetUser());
+  const [currentUser, setCurrentUser] = useState(getCurrnetUser());
+  const [loggedIn, setLoggedIn] = useState(getUser());
 
   return (
     <UserContext.Provider

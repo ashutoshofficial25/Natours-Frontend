@@ -8,23 +8,26 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Tour from "./components/Tour/Tour";
 import UserPrfile from "./components/UserProfile";
+import { UserProvider } from "./contexts/userContext";
 import Error from "./error";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/tourDetails" element={<Tour />} />
-          <Route path="/me" element={<UserPrfile />} />
-          <Route path="/error" element={<Error />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/tourDetails" element={<Tour />} />
+            <Route path="/me" element={<UserPrfile />} />
+            <Route path="/error" element={<Error />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }

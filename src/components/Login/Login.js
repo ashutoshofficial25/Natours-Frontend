@@ -8,26 +8,32 @@ import { UserContext } from "../../contexts/userContext";
 import "../../style.css";
 
 const Login = () => {
+  // const { enqueueSnackbar } = useSnackbar();
+  const { setCurrentUser, setLoggedin } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
   const loginForm = {
     email: "",
     password: "",
   };
 
-  const { setLoggedin, setCurrentUser } = useContext(UserContext);
-
-  const navigate = useNavigate();
   const LoginSubmit = async (values) => {
     console.log(values.email, values.password);
 
     const data = await login(values.email, values.password);
     if (data) {
-      //setCurrentUser(data);
-      setLoggedin(true);
-      console.log(data);
+      setCurrentUser(data);
       navigate("/");
+      setLoggedin(true);
+      localStorage.setItem("jwt", data.token);
+      // enqueueSnackbar("Login Success", {
+      //   variant: "success",
+      //   autoHideDuration: 3000,
+      // });
+      console.log(data);
     } else {
-      //console.log(data.finduser.user);
-      // localStorage.setItem("token", data.finduser.user);
+      console.log("error");
     }
   };
 

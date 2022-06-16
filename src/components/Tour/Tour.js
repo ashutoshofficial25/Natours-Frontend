@@ -51,8 +51,7 @@ const Tour = () => {
                 </svg>
 
                 <span className="heading-box__text">
-                  // TODO: solve this addewss
-                  {tourDetail.startLocation.address}
+                  // TODO: solve this addewss tour detail.location
                 </span>
               </div>
             </div>

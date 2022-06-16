@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllTours, getTour } from "../../actions/userActions";
+import { UserContext } from "../../contexts/userContext";
 import "../../style.css";
 
 const Homepage = () => {
@@ -8,8 +9,11 @@ const Homepage = () => {
 
   const _getallTours = async () => {
     const tour = await getAllTours();
-    let data = tour.data.doc;
-    setTours(data);
+    if (tour) {
+      let data = tour.data?.doc;
+      console.log(tour);
+      setTours(data);
+    }
   };
 
   useEffect(() => {

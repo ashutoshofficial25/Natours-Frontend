@@ -36,13 +36,6 @@ export function login(email, password) {
 
 export function logout() {
   const request = Axios.post(`users/logout`);
-  return request
-    .then((result) => {
-      return result.data;
-    })
-    .catch((error) => {
-      return error;
-    });
 }
 
 export const getAllTours = () => {

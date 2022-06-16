@@ -7,22 +7,33 @@ import "../../style.css";
 import { UserContext } from "../../contexts/userContext";
 
 const Header = () => {
-  const { loggedIn, setLoggedin } = useContext(UserContext);
+  const { loggedIn, setLoggedin, currentUser, setCurrentUser } =
+    useContext(UserContext);
+  const navigate = useNavigate();
 
   const _logout = () => {
-    const navigate = useNavigate();
     console.log("btn clicked");
-    logout().then((data) => {
-      if (data.status == "success") {
-        setLoggedin(false);
-        console.log(data);
-        navigate("/");
-      }
-    });
+    sessionStorage.removeItem("jwt");
+    setCurrentUser(false);
+    navigate("/login");
+    // logout()
+    //   .then((data) => {
+    //     if (data.status == "success") {
+    //       //setLoggedin(false);
+    //       sessionStorage.removeItem("user");
+    //       console.log(data);
+    //       navigate("/login");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
+  console.log("user:", currentUser);
+  console.log("ses:", sessionStorage);
 
   const displayLogin = () => {
-    if (loggedIn) {
+    if (currentUser) {
       return (
         <nav className="nav nav--user">
           <button onClick={() => _logout()} className="nav__el">
@@ -34,7 +45,7 @@ const Header = () => {
               alt="User photo"
               className="nav__user-img"
             />
-            <span>Ashu</span>
+            <span>{currentUser.data?.user.name}</span>
           </Link>
         </nav>
       );
