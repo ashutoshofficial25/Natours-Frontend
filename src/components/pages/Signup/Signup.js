@@ -43,7 +43,7 @@ const Signup = () => {
       <main className="main">
         <div className="login-form">
           <h2 className="heading-secondary ma-bt-lg">Create a new account</h2>
-          <Formik initialValues={signupFrom} onSubmit={Signup}>
+          <Formik initialValues={signupFrom} onSubmit={signupSubmit}>
             {({ values, handleChange, handleSubmit }) => (
               <form className="form" onSubmit={handleSubmit}>
                 <div className="form__group">
