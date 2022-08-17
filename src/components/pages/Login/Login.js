@@ -2,7 +2,7 @@ import { Container } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
 import React, { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { login } from "../../../actions/userActions";
 import { Context } from "../../../contexts/userContext";
@@ -87,10 +87,21 @@ const Login = () => {
                     minLength={8}
                   />
                 </div>
-                <div className="form__group">
+                <div
+                  className="form__group"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <button type="submit" className="btn btn--green">
                     Login
                   </button>
+                  <h2>
+                    {" "}
+                    New to Natours? <Link to="/signup">Singup</Link>
+                  </h2>
                 </div>
               </form>
             )}
