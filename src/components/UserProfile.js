@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/userContext";
 
 const UserPrfile = () => {
-  const { currentUser } = useContext(UserContext);
-
+  let currentUser = {};
   const navigate = useNavigate();
   if (currentUser) {
     return (

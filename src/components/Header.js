@@ -1,16 +1,13 @@
 import { Box, Button, Container, Grid, Input, Typography } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/userActions";
+import { logout } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
-import "../../style.css";
-import { UserContext } from "../../contexts/userContext";
+import "../style.css";
 
 const Header = () => {
-  const { loggedIn, setLoggedin, currentUser, setCurrentUser } =
-    useContext(UserContext);
   const navigate = useNavigate();
-
+  const [currentUser, setCurrentUser] = useState();
   const _logout = () => {
     console.log("btn clicked");
     sessionStorage.removeItem("jwt");
@@ -29,8 +26,6 @@ const Header = () => {
     //     console.log(error);
     //   });
   };
-  console.log("user:", currentUser);
-  console.log("ses:", sessionStorage);
 
   const displayLogin = () => {
     if (currentUser) {

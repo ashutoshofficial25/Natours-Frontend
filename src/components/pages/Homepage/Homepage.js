@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllTours, getTour } from "../../actions/userActions";
-import { UserContext } from "../../contexts/userContext";
-import "../../style.css";
+import { getAllTours } from "../../../actions/userActions";
+
+import "../../../style.css";
 
 const Homepage = () => {
   const [tours, setTours] = useState([]);

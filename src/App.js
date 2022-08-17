@@ -1,33 +1,33 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Homepage from "./components/Homepage/Homepage";
-import Login from "./components/Login/Login";
-import Signup from "./components/Signup/Signup";
-import Tour from "./components/Tour/Tour";
+import Footer from "./components/pages/Footer/Footer";
+import Header from "./components/Header";
+import Homepage from "./components/pages/Homepage/Homepage";
+import Login from "./components/pages/Login/Login";
 import UserPrfile from "./components/UserProfile";
-import { UserProvider } from "./contexts/userContext";
+import { Provider } from "./contexts/userContext";
+import Signup from "./components/pages/Signup/Signup";
 import Error from "./error";
 
 function App() {
   return (
     <div className="App">
-      <UserProvider>
+      <Provider>
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route exact path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
+            <Route exact path="/" element={<Homepage />} />
+
             <Route path="/signup" element={<Signup />} />
-            <Route path="/tourDetails" element={<Tour />} />
+            {/*  <Route path="/tourDetails" element={<Tour />} />
             <Route path="/me" element={<UserPrfile />} />
-            <Route path="/error" element={<Error />} />
+  <Route path="/error" element={<Error />} /> */}
           </Routes>
           <Footer />
         </BrowserRouter>
-      </UserProvider>
+      </Provider>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { Container, TextField } from "@mui/material";
 import React from "react";
 import { Formik } from "formik";
-import "../../style.css";
-import { signup } from "../../actions/userActions";
+import "../../../style.css";
+import { signup } from "../../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 
 const signupFrom = {

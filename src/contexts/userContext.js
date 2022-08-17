@@ -1,39 +1,32 @@
-import React, { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 
-export const UserContext = createContext(true);
+//initial state
+const inititalState = {
+  user: null,
+};
 
-export const UserProvider = (props) => {
-  const getUser = () => {
-    let user = localStorage.getItem("user");
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+const Context = createContext();
 
-  const getCurrnetUser = () => {
-    let user = localStorage.getItem("jwt");
-    if (user) {
-      return user;
-    } else {
-      return false;
-    }
-  };
+const rootReducer = (state, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      return { ...state, user: action.payload };
+    case "LOGOUT":
+      return { ...state, user: null };
 
-  const [currentUser, setCurrentUser] = useState(getCurrnetUser());
-  const [loggedIn, setLoggedIn] = useState(getUser());
+    default:
+      return { state };
+  }
+};
+
+//Context Provoder
+const Provider = ({ children }) => {
+  const [state, dispatch] = useReducer(rootReducer, inititalState);
+  // const [state, dispatch] = useReducer(first, second, third)
 
   return (
-    <UserContext.Provider
-      value={{
-        currentUser,
-        setCurrentUser,
-        loggedIn,
-        setLoggedIn,
-      }}
-    >
-      {props.children}
-    </UserContext.Provider>
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );
 };
+
+export { Context, Provider };

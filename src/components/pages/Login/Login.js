@@ -4,13 +4,16 @@ import { useSnackbar } from "notistack";
 import React, { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { login } from "../../actions/userActions";
-import { UserContext } from "../../contexts/userContext";
-import "../../style.css";
+import { login } from "../../../actions/userActions";
+import { Context } from "../../../contexts/userContext";
+import "../../../style.css";
 
 const Login = () => {
   // const { enqueueSnackbar } = useSnackbar();
-  const { setCurrentUser, setLoggedin } = useContext(UserContext);
+  const { state, dispatch } = useContext(Context);
+  const [user, setUser] = useState(null);
+
+  console.log("state:", state.user);
 
   const navigate = useNavigate();
 
@@ -32,7 +35,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      setCurrentUser(data);
+
       //setLoggedin(true);
       navigate("/");
       console.log("log", data.status);
