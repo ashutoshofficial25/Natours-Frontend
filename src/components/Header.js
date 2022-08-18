@@ -4,58 +4,57 @@ import { Link } from "react-router-dom";
 import { logout } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import "../style.css";
+import { Context } from "../contexts/userContext";
+import Swal from "sweetalert2";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState();
-  const _logout = () => {
-    console.log("btn clicked");
-    sessionStorage.removeItem("jwt");
-    setCurrentUser(false);
+  const { state, dispatch } = useContext(Context);
+
+  const _logout = async () => {
+    dispatch({
+      type: "LOGOUT",
+    });
+    window.localStorage.removeItem("user");
+    const data = await logout();
+
+    Swal.fire({
+      icon: "success",
+      title: "Logged Out",
+      timer: 2000,
+    });
     navigate("/login");
-    // logout()
-    //   .then((data) => {
-    //     if (data.status == "success") {
-    //       //setLoggedin(false);
-    //       sessionStorage.removeItem("user");
-    //       console.log(data);
-    //       navigate("/login");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
 
-  const displayLogin = () => {
-    if (currentUser) {
-      return (
-        <nav className="nav nav--user">
-          <button onClick={() => _logout()} className="nav__el">
-            Logout
-          </button>
-          <Link to="/me" className="nav__el">
-            <img
-              src="https://avatars.githubusercontent.com/u/91019894?v=4"
-              alt="User photo"
-              className="nav__user-img"
-            />
-            <span>{currentUser.data?.user.name}</span>
-          </Link>
-        </nav>
-      );
-    } else
-      return (
-        <nav className="nav nav--user">
-          <Link to="/login" className="nav__el">
-            Log in
-          </Link>
-          <Link to="/signup" className="nav__el nav__el--cta">
-            Sign up
-          </Link>
-        </nav>
-      );
-  };
+  // const displayLogin = () => {
+  //   if (currentUser) {
+  //     return (
+  //       <nav className="nav nav--user">
+  //         <button onClick={() => _logout()} className="nav__el">
+  //           Logout
+  //         </button>
+  //         <Link to="/me" className="nav__el">
+  //           <img
+  //             src="https://avatars.githubusercontent.com/u/91019894?v=4"
+  //             alt="User photo"
+  //             className="nav__user-img"
+  //           />
+  //           <span>{currentUser.data?.user.name}</span>
+  //         </Link>
+  //       </nav>
+  //     );
+  //   } else
+  //     return (
+  //       <nav className="nav nav--user">
+  //         <Link to="/login" className="nav__el">
+  //           Log in
+  //         </Link>
+  //         <Link to="/signup" className="nav__el nav__el--cta">
+  //           Sign up
+  //         </Link>
+  //       </nav>
+  //     );
+  // };
 
   return (
     <Container>
@@ -83,7 +82,18 @@ const Header = () => {
             alt="Natours logo"
           />
         </div>
-        {displayLogin()}
+
+        <nav className="nav nav--user">
+          <Link to="/login" className="nav__el">
+            Log in
+          </Link>
+          <Link to="/signup" className="nav__el nav__el--cta">
+            Sign up
+          </Link>
+          <button onClick={() => _logout()} className="nav__el">
+            Logout
+          </button>
+        </nav>
       </header>
     </Container>
   );

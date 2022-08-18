@@ -11,9 +11,6 @@ import "../../../style.css";
 const Login = () => {
   // const { enqueueSnackbar } = useSnackbar();
   const { state, dispatch } = useContext(Context);
-  const [user, setUser] = useState(null);
-
-  console.log("state:", state.user);
 
   const navigate = useNavigate();
 
@@ -26,19 +23,21 @@ const Login = () => {
     console.log(values.email, values.password);
 
     const data = await login(values.email, values.password);
-    console.log("log", data.status);
+    console.log("log", data.data.user);
     if (data.status === "success") {
-      localStorage.setItem("jwt", data.token);
+      dispatch({
+        type: "LOGIN",
+        payload: data.data.user,
+      });
+      localStorage.setItem("user", JSON.stringify(data.data.user));
       Swal.fire({
         icon: "success",
         title: data.status,
-        showConfirmButton: false,
+        showConfirmButton: true,
         timer: 1500,
       });
 
-      //setLoggedin(true);
       navigate("/");
-      console.log("log", data.status);
     } else if (data.error) {
       Swal.fire({
         icon: "error",

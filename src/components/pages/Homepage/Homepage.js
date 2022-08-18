@@ -19,7 +19,6 @@ const Homepage = () => {
   useEffect(() => {
     _getallTours();
   }, []);
-  console.log(tours);
 
   return (
     <div className="main">
