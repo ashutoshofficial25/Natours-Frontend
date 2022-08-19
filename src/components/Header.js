@@ -56,7 +56,7 @@ const Header = () => {
         </div>
 
         {user === null ? (
-          <nav className="nav nav--user">
+          <nav className="nav-responsive ">
             <Link to="/login" className="nav__el">
               Log in
             </Link>
@@ -65,7 +65,7 @@ const Header = () => {
             </Link>
           </nav>
         ) : (
-          <nav>
+          <nav className="nav-responsive">
             <button onClick={() => _logout()} className="nav__el">
               Logout
             </button>

@@ -1336,6 +1336,18 @@ body {
   }
   .main {
     padding: 8rem 2rem;
+    background-color: #55c57a00;
+  }
+  .nav-responsive {
+    display: inline-block;
+  }
+  .login-form {
+    padding: 6rem 2rem;
+  }
+  .heading-secondary {
+    text-align: center;
+    font-weight: 600;
+    display: block;
   }
 }
 
@@ -1348,5 +1360,10 @@ body {
   }
   .main {
     padding: 8rem 2rem;
+    background-color: #55c57a00;
+  }
+  .heading-secondary {
+    text-align: center;
+    font-weight: 600;
   }
 }
