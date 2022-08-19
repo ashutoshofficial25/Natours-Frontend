@@ -82,7 +82,6 @@ const Homepage = () => {
                 </span>
               </p>
               <Link
-                //onClick={() => handleTourClick(item._id)}
                 className="btn btn--green btn--small"
                 to="/tourDetails"
                 state={item._id}

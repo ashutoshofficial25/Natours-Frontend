@@ -16,6 +16,7 @@ const Tour = () => {
   console.log("log:", tourDetail);
   useEffect(() => {
     _getTour(state);
+    console.log(state);
   }, []);
 
   return (

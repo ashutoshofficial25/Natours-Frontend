@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 const Header = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Context);
+  const { user } = state;
+  console.log("user:", user);
 
   const _logout = async () => {
     dispatch({
@@ -25,36 +27,6 @@ const Header = () => {
     });
     navigate("/login");
   };
-
-  // const displayLogin = () => {
-  //   if (currentUser) {
-  //     return (
-  //       <nav className="nav nav--user">
-  //         <button onClick={() => _logout()} className="nav__el">
-  //           Logout
-  //         </button>
-  //         <Link to="/me" className="nav__el">
-  //           <img
-  //             src="https://avatars.githubusercontent.com/u/91019894?v=4"
-  //             alt="User photo"
-  //             className="nav__user-img"
-  //           />
-  //           <span>{currentUser.data?.user.name}</span>
-  //         </Link>
-  //       </nav>
-  //     );
-  //   } else
-  //     return (
-  //       <nav className="nav nav--user">
-  //         <Link to="/login" className="nav__el">
-  //           Log in
-  //         </Link>
-  //         <Link to="/signup" className="nav__el nav__el--cta">
-  //           Sign up
-  //         </Link>
-  //       </nav>
-  //     );
-  // };
 
   return (
     <Container>
@@ -83,17 +55,31 @@ const Header = () => {
           />
         </div>
 
-        <nav className="nav nav--user">
-          <Link to="/login" className="nav__el">
-            Log in
-          </Link>
-          <Link to="/signup" className="nav__el nav__el--cta">
-            Sign up
-          </Link>
-          <button onClick={() => _logout()} className="nav__el">
-            Logout
-          </button>
-        </nav>
+        {user === null ? (
+          <nav className="nav nav--user">
+            <Link to="/login" className="nav__el">
+              Log in
+            </Link>
+            <Link to="/signup" className="nav__el nav__el--cta">
+              Sign up
+            </Link>
+          </nav>
+        ) : (
+          <nav>
+            <button onClick={() => _logout()} className="nav__el">
+              Logout
+            </button>
+
+            <Link to="/me" className="nav__el">
+              <img
+                src="https://avatars.githubusercontent.com/u/91019894?v=4"
+                alt="User photo"
+                className="nav__user-img"
+              />
+              <span>{user.name}</span>
+            </Link>
+          </nav>
+        )}
       </header>
     </Container>
   );
