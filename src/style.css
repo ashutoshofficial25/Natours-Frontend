@@ -320,19 +320,11 @@ body {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 }
 .header__logo img {
   height: 3.5rem;
-}
-@media only screen and (max-width: 62.5em) {
-  .header__logo {
-    -webkit-box-ordinal-group: 0;
-    -ms-flex-order: -1;
-    order: -1;
-    margin-bottom: 1.5rem;
-  }
 }
 
 .section-header {
@@ -874,7 +866,6 @@ body {
 .nav--tours {
   -webkit-box-flex: 0;
   -ms-flex: 0 1 40%;
-  flex: 0 1 40%;
 }
 @media only screen and (max-width: 62.5em) {
   .nav--tours {
@@ -954,14 +945,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
-@media only screen and (max-width: 37.5em) {
-  .nav__search {
-    -webkit-box-ordinal-group: 0;
-    -ms-flex-order: -1;
-    order: -1;
-    margin-bottom: 1.2rem;
-  }
-}
+
 .nav__search-btn {
   background: none;
   border: none;
@@ -1002,7 +986,6 @@ body {
 }
 .nav__search-input:focus {
   outline: none;
-  width: 25rem;
   border-bottom: 1px solid currentColor;
 }
 .nav__user-img {
@@ -1349,6 +1332,39 @@ body {
     font-weight: 600;
     display: block;
   }
+  .header {
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__el,
+  .nav__el:link,
+  .nav__el:visited {
+    color: #f7f7f7;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  .nav__search-input {
+    width: 12rem;
+    font-size: 1.4rem;
+  }
+  body {
+    padding: 1rem 0px 1px 0px !important;
+    background-color: #55c57a;
+    line-height: 1.1;
+  }
+  .header__logo img {
+    height: 2.5rem;
+  }
+  .nav__el--cta {
+    padding: 1rem 2rem;
+    border-radius: 10rem;
+  }
+  .nav__el--cta:hover {
+    color: #777;
+  }
 }
 
 @media only screen and (max-width: 576px) {
@@ -1366,4 +1382,42 @@ body {
     text-align: center;
     font-weight: 600;
   }
+  .header {
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__el,
+  .nav__el:link,
+  .nav__el:visited {
+    color: #f7f7f7;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  .nav__search-input {
+    width: 10rem;
+    font-size: 1rem;
+  }
+  body {
+    padding: 1rem 0px 1px 0px !important;
+    background-color: #55c57a;
+    line-height: 1.1;
+  }
+  .header__logo img {
+    height: 2rem;
+  }
+  .nav__el--cta {
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+    margin-left: 1.5rem;
+  }
+  .nav__el--cta:hover {
+    color: #777;
+  }
+}
+.nav-logout {
+  display: flex;
+  align-items: center;
 }

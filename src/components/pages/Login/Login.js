@@ -55,64 +55,62 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <main className="main">
-        <div className="login-form">
-          <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
-          <Formik initialValues={loginForm} onSubmit={LoginSubmit}>
-            {({ values, handleChange, handleSubmit }) => (
-              <form className="form" onSubmit={handleSubmit}>
-                <div className="form__group">
-                  <label className="form__label" htmlFor="email">
-                    Email address
-                  </label>
-                  <input
-                    onChange={handleChange}
-                    value={values.email}
-                    className="form__input"
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    required="required"
-                  />
-                </div>
-                <div className="form__group ma-bt-md">
-                  <label className="form__label" htmlFor="password">
-                    Password
-                  </label>
-                  <input
-                    onChange={handleChange}
-                    value={values.password}
-                    className="form__input"
-                    id="password"
-                    type="password"
-                    placeholder="••••••••"
-                    required="required"
-                    minLength={8}
-                  />
-                </div>
-                <div
-                  className="form__group"
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <button type="submit" className="btn btn--green">
-                    Login
-                  </button>
-                  <h2>
-                    {" "}
-                    New to Natours? <Link to="/signup">Singup</Link>
-                  </h2>
-                </div>
-              </form>
-            )}
-          </Formik>
-        </div>
-      </main>
-    </Container>
+    <main className="main">
+      <div className="login-form">
+        <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+        <Formik initialValues={loginForm} onSubmit={LoginSubmit}>
+          {({ values, handleChange, handleSubmit }) => (
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="form__group">
+                <label className="form__label" htmlFor="email">
+                  Email address
+                </label>
+                <input
+                  onChange={handleChange}
+                  value={values.email}
+                  className="form__input"
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required="required"
+                />
+              </div>
+              <div className="form__group ma-bt-md">
+                <label className="form__label" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  onChange={handleChange}
+                  value={values.password}
+                  className="form__input"
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  required="required"
+                  minLength={8}
+                />
+              </div>
+              <div
+                className="form__group"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <button type="submit" className="btn btn--green">
+                  Login
+                </button>
+                <h2>
+                  {" "}
+                  New to Natours? <Link to="/signup">Singup</Link>
+                </h2>
+              </div>
+            </form>
+          )}
+        </Formik>
+      </div>
+    </main>
   );
 };
 

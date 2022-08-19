@@ -29,59 +29,57 @@ const Header = () => {
   };
 
   return (
-    <Container>
-      <header className="header">
-        <nav className="nav nav--tours">
-          <Link to="/" className="nav__el">
-            All tours
-          </Link>
-          <form className="nav__search">
-            <button className="nav__search-btn">
-              <svg>
-                <use xlinkHref="img/icons.svg#icon-search" />
-              </svg>
-            </button>
-            <input
-              type="text"
-              placeholder="Search tours"
-              className="nav__search-input"
-            />
-          </form>
-        </nav>
-        <div className="header__logo">
-          <img
-            src="https://www.natours.dev/img/logo-green.png"
-            alt="Natours logo"
+    <header className="header">
+      <nav className="nav nav--tours">
+        <Link to="/" className="nav__el">
+          All tours
+        </Link>
+        <form className="nav__search">
+          <button className="nav__search-btn">
+            <svg>
+              <use xlinkHref="img/icons.svg#icon-search" />
+            </svg>
+          </button>
+          <input
+            type="text"
+            placeholder="Search tours"
+            className="nav__search-input"
           />
-        </div>
+        </form>
+      </nav>
+      <div className="header__logo">
+        <img
+          src="https://www.natours.dev/img/logo-green.png"
+          alt="Natours logo"
+        />
+      </div>
 
-        {user === null ? (
-          <nav className="nav-responsive ">
-            <Link to="/login" className="nav__el">
-              Log in
-            </Link>
-            <Link to="/signup" className="nav__el nav__el--cta">
-              Sign up
-            </Link>
-          </nav>
-        ) : (
-          <nav className="nav-responsive">
-            <button onClick={() => _logout()} className="nav__el">
-              Logout
-            </button>
+      {user === null ? (
+        <nav className="">
+          <Link to="/login" className="nav__el">
+            Log in
+          </Link>
+          <Link to="/signup" className="nav__el nav__el--cta">
+            Sign up
+          </Link>
+        </nav>
+      ) : (
+        <nav className="nav-logout">
+          <button onClick={() => _logout()} className="nav__el">
+            Logout
+          </button>
 
-            <Link to="/me" className="nav__el">
-              <img
-                src="https://avatars.githubusercontent.com/u/91019894?v=4"
-                alt="User photo"
-                className="nav__user-img"
-              />
-              <span>{user.name}</span>
-            </Link>
-          </nav>
-        )}
-      </header>
-    </Container>
+          <Link to="/me" className="nav__el">
+            <img
+              src="https://avatars.githubusercontent.com/u/91019894?v=4"
+              alt="User photo"
+              className="nav__user-img"
+            />
+            <span>{user.name}</span>
+          </Link>
+        </nav>
+      )}
+    </header>
   );
 };
 export default Header;
