@@ -1,8 +1,8 @@
 import React from "react";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
-    <main className="main">
+    <main className="main" style={{ height: "50vh" }}>
       <div className="error">
         <div className="error__title">
           <h2 className="heading-secondary heading-secondary--error">
@@ -16,4 +16,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;

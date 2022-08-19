@@ -1,9 +1,10 @@
 import { Container, TextField } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Formik } from "formik";
 import "../../../style.css";
 import { signup } from "../../../actions/userActions";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../../contexts/userContext";
 
 const signupFrom = {
   name: "",
@@ -14,6 +15,13 @@ const signupFrom = {
 
 const Signup = () => {
   const navigate = useNavigate();
+  const { state } = useContext(Context);
+  const { user } = state;
+
+  useEffect(() => {
+    if (user !== null) navigate("/");
+  }, [user]);
+
   const signupSubmit = async (values) => {
     console.log(
       values.name,

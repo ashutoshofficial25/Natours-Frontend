@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import { Formik } from "formik";
 import { useSnackbar } from "notistack";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { login } from "../../../actions/userActions";
@@ -11,8 +11,13 @@ import "../../../style.css";
 const Login = () => {
   // const { enqueueSnackbar } = useSnackbar();
   const { state, dispatch } = useContext(Context);
+  const { user } = state;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user !== null) navigate("/");
+  }, [user]);
 
   const loginForm = {
     email: "",

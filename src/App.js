@@ -9,8 +9,8 @@ import Signup from "./components/pages/Signup/Signup";
 import UserPrfile from "./components/UserProfile";
 import { Provider } from "./contexts/userContext";
 
-import Error from "./error";
 import Tour from "./components/pages/Tour/Tour";
+import ErrorPage from "./error";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
 
             <Route path="/me" element={<UserPrfile />} />
             <Route path="/tourDetails" element={<Tour />} />
-            {/*  <Route path="/error" element={<Error />} /> */}
+            <Route path="/*" element={<ErrorPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>
