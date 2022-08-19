@@ -10,6 +10,7 @@ import UserPrfile from "./components/UserProfile";
 import { Provider } from "./contexts/userContext";
 
 import Error from "./error";
+import Tour from "./components/pages/Tour/Tour";
 
 function App() {
   return (
@@ -21,9 +22,10 @@ function App() {
             <Route exact path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {/*  <Route path="/tourDetails" element={<Tour />} />
+
             <Route path="/me" element={<UserPrfile />} />
-  <Route path="/error" element={<Error />} /> */}
+            <Route path="/tourDetails" element={<Tour />} />
+            {/*  <Route path="/error" element={<Error />} /> */}
           </Routes>
           <Footer />
         </BrowserRouter>
